@@ -1,0 +1,13 @@
+{
+  "baiduConfig": {
+    "APP_NAME": "pwc_lab",
+    "APP_ID": "10889986",
+    "APP_KEY": "I0lXzFGanjYRGK0dG8avdEws",
+    "APP_SECRET": "ctX7CCS51TGgcHZD7ov9lAUGVu08u0pI",
+    "GROUP_ID": "pwc"
+  }, 
+  "programConfig": {
+    "ageThreshold": 200,
+    "recoInterval": 60
+  }
+}

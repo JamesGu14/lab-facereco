@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href='/stylesheets/bootstrap.min.css' type='text/css'>
+    <link rel="stylesheet" href="/stylesheets/system.css" type="text/css">
+  </head>
+  <body>
+    <div style="margin: 50px">
+
+      <div style="width: 80%" class="upload_panel">
+        <h2>Upload Profile Picture</h2>
+        <table>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Image Preview</td>
+          </tr>
+          <tr>
+            <td>
+              <form name="addFaceForm" id="addFaceForm" action="">
+                <div class="form-group">
+                  <label for="personName">Full Name</label>
+                  <input type="text" class="form-control" style="width: 420px" id="personName" name="personName" placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                  <label for="avatar">Customer Picture<i class="text-red">(.jpg and .png only, less than 2MB）</i></label>
+                  <input type="file" class="form-control-file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg"
+                    onchange="preImg(this.id,'photo');">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Confirm and Upload">
+              </form>
+            </td>
+            <td style="width: 100px"></td>
+            <td>
+              <img id="photo" src="" width="300px" height="300px" style="display: block;" />  
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+      
+      <br><br>
+      <h5>Face Library</h5>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <td>Full Name</td>
+            <td>Image Preview</td>
+            <td>UID</td>
+          </tr>
+        </thead>
+        <tbody class="table-striped">
+          <% users.forEach(function(user) { %>
+          <tr>
+            <td><%= user.fullName %></td>
+            <td><img class="avatar_preview" src="<%= user.imgPath.replace('public/', '') %>" alt="<%= user.fullName %>" /></td>
+            <td><%= user.uid %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("form#addFaceForm").submit(function(e) {
+          e.preventDefault();    
+          var formData = new FormData(this);
+
+          $.ajax({
+              url: '/system/face',
+              type: 'POST',
+              data: formData,
+              cache: false,
+              contentType: false,
+              processData: false,
+              error:function(err){
+                console.error(err);
+              },
+              success: function (data) {
+                alert(data)
+              },
+              complete:function(){
+                  console.log("Request finished.");
+              }
+            });
+          }
+        );
+      })
+
+      function getFileUrl(sourceId) {  
+          var url;  
+          if (navigator.userAgent.indexOf("MSIE")>=1) { // IE  
+              url = document.getElementById(sourceId).value;  
+          } else if(navigator.userAgent.indexOf("Firefox")>0) { // Firefox  
+              url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));  
+          } else if(navigator.userAgent.indexOf("Chrome")>0) { // Chrome  
+              url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));  
+          }  
+          return url;  
+      }  
+      function preImg(sourceId, targetId) {   
+          var url = getFileUrl(sourceId);   
+          var imgPre = document.getElementById(targetId);   
+          imgPre.src = url;   
+      }   
+
+    </script>
+  </body>
+</html>

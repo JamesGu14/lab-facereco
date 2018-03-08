@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" media="all">
+    <link rel="stylesheet" href='/stylesheets/bootstrap.min.css' type='text/css'>
+  </head>
+  <body>
+    <br /><br />
+    <div id="container">
+      <div class="row">
+        <div class="col-md-10 offset-md-1" id="panel">
+          <br />
+          <h2>PwC Emerging Tech Lab</h2>
+          <br />
+          <p class="btn btn-primary" id="start">Start Program</p>
+          <!-- <p class="btn btn-primary" id="upload-img">Detect</p> -->
+          <br /><br />
+          <table>
+            <tr>
+              <td>Camera View</td>
+              <td>Detecting Image</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="camera">
+                  <video id="video">Video stream not available.</video>
+                  <!-- <button id="startbutton" style="">Take photo</button> -->
+                </div>
+              </td>
+              <td>
+                <div class="output">
+                  <canvas id="canvas"></canvas>
+                  <img id="photo" style="" alt="The screen capture will appear in this box."> 
+                </div>
+              </td>
+            </tr>
+          </table>
+          <!-- <div id="hidden-audio">
+            <audio id="greeting-audio" preload="none">
+              <source src="/faces/audio.mp3" type="audio/mpeg">
+              Your browser does not support audio play
+            </audio>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    
+    
+
+    <script src="/javascripts/jquery-3.3.1.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/capture.js"></script>
+  </body>
+</html>

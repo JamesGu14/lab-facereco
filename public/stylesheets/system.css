@@ -1,0 +1,13 @@
+
+.avatar_preview {
+  height: 80px;
+}
+
+.upload_panel {
+  background-color: #eee;
+  padding: 50px;
+}
+
+.text-red {
+  color: red
+}
